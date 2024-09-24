@@ -32,16 +32,18 @@ CPMAddPackage(
     "TRACY_LIBBACKTRACE_ELF_DYNLOAD_SUPPORT ON"
 )
 
-message(STATUS "Downloading Tracy client")
-file(DOWNLOAD
-        https://github.com/wolfpld/tracy/releases/download/v${TRACY_VERSION}/windows-${TRACY_VERSION}.zip
-        ${CMAKE_SOURCE_DIR}/tracy.tar.gz
-        TIMEOUT 60
-)
-execute_process(COMMAND "${CMAKE_COMMAND}" -E
-        tar xvf "${CMAKE_SOURCE_DIR}/tracy.tar.gz"
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/
-)
+if(MSVC)
+    message(STATUS "Downloading Tracy client")
+    file(DOWNLOAD
+            https://github.com/wolfpld/tracy/releases/download/v${TRACY_VERSION}/windows-${TRACY_VERSION}.zip
+            ${CMAKE_SOURCE_DIR}/tracy.tar.gz
+            TIMEOUT 60
+    )
+    execute_process(COMMAND "${CMAKE_COMMAND}" -E
+            tar xvf "${CMAKE_SOURCE_DIR}/tracy.tar.gz"
+            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/
+    )
+endif(MSVC)
 
 set(SOURCES
     src/main.cpp
@@ -50,7 +52,15 @@ set(SOURCES
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
-target_include_directories(${PROJECT_NAME} PUBLIC src/)
-# target_compile_options(${PROJECT_NAME} PUBLIC /Wall)
+
+target_include_directories(${PROJECT_NAME} PUBLIC src)
+
 target_link_libraries(${PROJECT_NAME} PUBLIC spdlog::spdlog TracyClient)
-# set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "/INCREMENTAL:NO")
+
+if(MSVC)
+    target_compile_options(${PROJECT_NAME} PUBLIC /Wall /WX)
+    set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS /INCREMENTAL:NO)
+else()
+    target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Wpedantic)
+    set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS -pthread)
+endif(MSVC)

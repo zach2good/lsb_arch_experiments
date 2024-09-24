@@ -6,18 +6,10 @@
 
 class LuaWrapper final
 {
-    struct FakeLuaState
-    {
-    };
-    FakeLuaState luaState_;
 };
 
 class SQLWrapper final
 {
-    struct FakeSQLConnection
-    {
-    };
-    FakeSQLConnection sqlConnection_;
 };
 
 // navmesh.h
@@ -26,15 +18,12 @@ class SQLWrapper final
 // different navmeshes from different threads.
 class NavmeshWrapper final
 {
-    struct FakeNavmesh
-    {
-    };
-    FakeNavmesh navmesh_;
 };
 
 // resources.h
-struct Resources final
+class Resources final
 {
+public:
     Resources(Scheduler& scheduler)
     : scheduler_(scheduler)
     , luaPool_(1)
@@ -45,9 +34,9 @@ struct Resources final
 
     DELETE_COPY_AND_MOVE(Resources);
 
+    Scheduler& scheduler_;
+
     ResourcePool<LuaWrapper>     luaPool_;
     ResourcePool<SQLWrapper>     sqlPool_;
     ResourcePool<NavmeshWrapper> navmeshPool_;
-
-    Scheduler& scheduler_;
 };

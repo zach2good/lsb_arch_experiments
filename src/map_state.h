@@ -1,5 +1,7 @@
 #pragma once
 
+#include "common.h"
+
 // map_state.h
 // The meat and potatoes of the zone, entity, and tick logic
 class MapState final
@@ -31,6 +33,8 @@ public:
     {
         for (auto& zone : zones_)
         {
+            std::ignore = zone;
+
             // co_await zone.handleNetworkMessages();
             // co_await zone.tickZonesAndEntities();
         }

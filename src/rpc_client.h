@@ -1,5 +1,7 @@
 #pragma once
 
+#include "common.h"
+
 // rpc_client.h
 // Communication with other server executables
 class RpcClient final

@@ -8,10 +8,14 @@
 #include <thread>
 #include <vector>
 
-#pragma warning(push)
-#pragma warning(disable : 26495)
+// Cross-platform pragma push/disable/pop
+
+
+// TODO
+// #pragma warning(push)
+// #pragma warning(disable : 26495)
 #include "tracy.h"
-#pragma warning(pop)
+// #pragma warning(pop)
 
 //
 // Macros/ifdefs
@@ -39,7 +43,7 @@
 
 #define DELETE_COPY_AND_MOVE(TypeName) \
     DELETE_COPY(TypeName);           \
-    DELETE_MOVE(TypeName);
+    DELETE_MOVE(TypeName)
 
 // https://stackoverflow.com/questions/1505582/determining-32-vs-64-bit-in-c
 // Check Windows

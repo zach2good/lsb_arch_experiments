@@ -148,9 +148,9 @@ private:
         condition_.notify_one();
     }
 
+    size_t                  poolSize_;
     ResourcePoolInit        init_;
     std::vector<Resource>   resourcesPool_;
-    size_t                  poolSize_;
     mutable std::mutex      mutex_;
     std::condition_variable condition_;
 };

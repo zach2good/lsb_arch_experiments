@@ -1,6 +1,7 @@
 #pragma once
 
 #include <tracy/Tracy.hpp>
+#include "common.h"
 
 #define TracyFrameMark          FrameMark
 #define TracyZoneScoped         ZoneScoped

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "common.h"
+
 // settings.h
 class Settings final
 {

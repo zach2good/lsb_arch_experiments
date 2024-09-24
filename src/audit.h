@@ -1,5 +1,7 @@
 #pragma once
 
+#include "common.h"
+
 // audit.h
 // Writing to db audit tables asynchonously
 class Audit final
