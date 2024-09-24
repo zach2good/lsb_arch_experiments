@@ -19,6 +19,8 @@ public:
     {
     }
 
+    DELETE_COPY_AND_MOVE(MapState);
+
     auto luaTestTask() -> void // task<void>
     {
         auto [_, lua] = this->resources_.luaPool_.getHandleAndRef();

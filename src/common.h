@@ -13,22 +13,33 @@
 #include "tracy.h"
 #pragma warning(pop)
 
-
 //
 // Macros/ifdefs
 //
 
-#define DISALLOW_COPY(TypeName)                    \
+#define DEFAULT_COPY(TypeName)                      \
+    TypeName(const TypeName&)            = default; \
+    TypeName& operator=(const TypeName&) = default;
+
+#define DEFAULT_MOVE(TypeName)                 \
+    TypeName(TypeName&&)            = default; \
+    TypeName& operator=(TypeName&&) = default;
+
+#define DEFAULT_COPY_AND_MOVE(TypeName) \
+    DEFAULT_COPY(TypeName);             \
+    DEFAULT_MOVE(TypeName);
+
+#define DELETE_COPY(TypeName)                      \
     TypeName(const TypeName&)            = delete; \
     TypeName& operator=(const TypeName&) = delete;
 
-#define DISALLOW_MOVE(TypeName)               \
+#define DELETE_MOVE(TypeName)                 \
     TypeName(TypeName&&)            = delete; \
     TypeName& operator=(TypeName&&) = delete;
 
-#define DISALLOW_COPY_AND_MOVE(TypeName) \
-    DISALLOW_COPY(TypeName)              \
-    DISALLOW_MOVE(TypeName)
+#define DELETE_COPY_AND_MOVE(TypeName) \
+    DELETE_COPY(TypeName);           \
+    DELETE_MOVE(TypeName);
 
 // https://stackoverflow.com/questions/1505582/determining-32-vs-64-bit-in-c
 // Check Windows

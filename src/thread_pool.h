@@ -12,6 +12,8 @@ public:
 
     ~ThreadPool() = default;
 
+    DELETE_COPY_AND_MOVE(ThreadPool);
+
 private:
     // TODO: nonstd::jthread
     std::vector<std::thread> threads_;

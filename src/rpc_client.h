@@ -10,6 +10,8 @@ public:
     {
     }
 
+    DELETE_COPY_AND_MOVE(RpcClient);
+
     // Populated with an internal impl of auto-generated rpc calls
     // from our own IDL.
     // Rpc calls are built on top of coroutines.

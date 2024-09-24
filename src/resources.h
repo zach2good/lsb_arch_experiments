@@ -43,6 +43,8 @@ struct Resources final
     {
     }
 
+    DELETE_COPY_AND_MOVE(Resources);
+
     ResourcePool<LuaWrapper>     luaPool_;
     ResourcePool<SQLWrapper>     sqlPool_;
     ResourcePool<NavmeshWrapper> navmeshPool_;

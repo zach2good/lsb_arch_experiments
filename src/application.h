@@ -51,6 +51,8 @@ public:
         // Teardown
     }
 
+    DELETE_COPY_AND_MOVE(Application);
+
     void run()
     {
         // Everything is ready to go, start the main loop

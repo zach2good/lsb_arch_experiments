@@ -11,6 +11,8 @@ public:
         // Settings are linked from Lua, so we need access to resources_.luaPool_
     }
 
+    DELETE_COPY_AND_MOVE(Settings);
+
     Scheduler& scheduler_;
     Resources& resources_;
 };

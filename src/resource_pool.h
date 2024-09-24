@@ -46,6 +46,8 @@ public:
         }
     }
 
+    DELETE_COPY_AND_MOVE(ResourcePool<T>);
+
     auto getHandle() -> ResourceHandle<T>
     {
         std::unique_lock<std::mutex> lock(mutex_);
@@ -123,13 +125,8 @@ private:
         {
         }
 
-        // Disable copy constructor and copy assignment
-        Resource(const Resource&)            = delete;
-        Resource& operator=(const Resource&) = delete;
-
-        // Default move constructor and move assignment
-        Resource(Resource&&) noexcept            = default;
-        Resource& operator=(Resource&&) noexcept = default;
+        DELETE_COPY(Resource);
+        DEFAULT_MOVE(Resource);
 
         std::unique_ptr<T> obj_{ nullptr };
         bool               inUse_{ false };

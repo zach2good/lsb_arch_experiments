@@ -11,5 +11,7 @@ public:
     {
     }
 
+    DELETE_COPY_AND_MOVE(ConsoleService);
+
     Application& app_;
 };

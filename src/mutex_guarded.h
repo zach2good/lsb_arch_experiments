@@ -21,7 +21,7 @@ struct mutex_guarded
     {
     }
 
-    DISALLOW_COPY_AND_MOVE(mutex_guarded);
+    DELETE_COPY_AND_MOVE(mutex_guarded<T>);
 
     auto read(auto f) const
     {

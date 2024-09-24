@@ -33,6 +33,8 @@ public:
 
     ~Scheduler() = default;
 
+    DELETE_COPY_AND_MOVE(Scheduler);
+
     void postToMainThread()
     {
     }

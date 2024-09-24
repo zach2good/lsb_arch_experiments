@@ -11,6 +11,8 @@ public:
     {
     }
 
+    DELETE_COPY_AND_MOVE(Audit);
+
     // Audit task
 
     Scheduler& scheduler_;
