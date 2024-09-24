@@ -1,18 +1,50 @@
 #pragma once
 
-#include "task.h"
-#include <cstddef>
+#include "common.h"
+#include "thread_pool.h"
 
-class Scheduler
+// scheduler.h
+/*
+Example usage:
+
+    // Defined tasks
+    auto someTask() -> task<int>
+    {
+        // Some heavy computation
+        co_return 42;
+    }
+
+    co_await someTask();
+
+    // Inline
+    int x = co_await scheduler_.postToWorkerThread([]() -> int
+    {
+        // Some heavy computation
+        co_return 42;
+    });
+*/
+class Scheduler final
 {
 public:
-    explicit Scheduler(std::size_t num_threads)
+    explicit Scheduler(std::size_t numThreads)
+    : threadPool_(numThreads)
     {
     }
 
     ~Scheduler() = default;
 
-    void post_to_main_thread(coro::task<> task1){}
-    void post_to_worker_thread(coro::task<> task1){}
-    void wait_for_all_tasks(){}
+    void postToMainThread()
+    {
+    }
+
+    void postToWorkerThread()
+    {
+    }
+
+    void waitForAllTasks() // blocking
+    {
+    }
+
+private:
+    ThreadPool threadPool_;
 };

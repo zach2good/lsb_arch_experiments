@@ -1,13 +1,13 @@
 #pragma once
 
+#include "common.h"
+
 #include <condition_variable>
 #include <iostream>
 #include <memory>
 #include <mutex>
 #include <thread>
 #include <vector>
-
-#include "tracy.h"
 
 template <typename T>
 class ResourceHandle;
