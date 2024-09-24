@@ -1,5 +1,6 @@
 .*/
 build*/
-cmake*/
+cmake-*/
 tracy-*
 tracy.tar.gz
+.DS_Store
